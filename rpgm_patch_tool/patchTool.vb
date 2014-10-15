@@ -1,7 +1,12 @@
 ﻿Imports System.IO
 
 Public Class patchTool
+    Public Const WM_NCLBUTTONDBLCLK As Integer = &HA3
 
+    Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
+        If m.Msg = WM_NCLBUTTONDBLCLK Then Return
+        MyBase.WndProc(m)
+    End Sub
     Private Sub Browse_Click(sender As Object, e As EventArgs) Handles BrowseOrig.Click, BrowsePatch.Click, BrowseOut.Click
         Dim openPath As String
         Dim clickedButton As Button
